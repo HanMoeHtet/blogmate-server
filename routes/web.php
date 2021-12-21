@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->to(env('APP_CLIENT_URL'));
+    $clientURL = env('APP_CLIENT_URL');
+    if (isset($clientURL)) {
+        return redirect($clientURL);
+    }
+    return view('welcome');
 });
